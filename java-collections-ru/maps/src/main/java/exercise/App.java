@@ -8,25 +8,22 @@ import java.util.StringJoiner;
 public class App {
     public static Map<String, Integer> getWordCount(String sentence) {
         var words = sentence.split(" ");
-        Map<String, Integer> wordCount = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
 
         if (sentence.length() == 0) {
-            return wordCount;
+            return map;
         }
 
         for (String word: words) {
-            if (wordCount.containsKey(word)) {
-                var currentCount = wordCount.get(word);
-                wordCount.replace(word, currentCount + 1);
-            } else {
-                wordCount.put(word, 1);
-            }
+            var wordCount = map.getOrDefault(word, 0);
+            wordCount +=1;
+            map.put(word, wordCount);
         }
-        return wordCount;
+        return map;
     }
 
     public static String toString(Map<String, Integer> map) {
-        if (map.size() == 0) {
+        if (map.isEmpty()) {
             return "{}";
         }
         var result = new StringJoiner("\n");
