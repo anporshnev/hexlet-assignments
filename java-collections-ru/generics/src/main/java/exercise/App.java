@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 // BEGIN
 public class App {
-    public static <T, V> List<Map<T, V>> findWhere(List<Map<T, V>> books, Map<T, V> where) {
+    public static <T, V> List<Map<T, V>> findWhere(List<Map<T, V>> data, Map<T, V> items) {
         List<Map<T, V>> result = new ArrayList<>();
 
-        for (Map<T, V> book: books) {
+        for (Map<T, V> book: data) {
             var bookSet = book.entrySet();
-            var whereSet = where.entrySet();
+            var whereSet = items.entrySet();
             if (bookSet.containsAll(whereSet)) {
                 result.add(book);
             }
