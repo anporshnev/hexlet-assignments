@@ -1,22 +1,19 @@
 package exercise;
 
+import java.util.Arrays;
 import java.util.List;
 
 // BEGIN
 class App {
-    public static int getCountOfFreeEmails(List<String> emails) {
-        return (int) emails.stream()
-                .filter(email -> hasFreeDomain(email))
+    private static final List<String> FREE_DOMAINS = Arrays.asList(
+            "gmail.com", "yandex.ru", "hotmail.com"
+    );
+
+    public static long getCountOfFreeEmails(List<String> emails) {
+        return emails.stream()
+                .map(email -> email.split("@")[1])
+                .filter(FREE_DOMAINS::contains)
                 .count();
-    }
-    private static boolean hasFreeDomain(String email) {
-        String[] freeDomains = {"@gmail.com", "@yandex.ru", "@hotmail.com"};
-        for (String freeDomain: freeDomains) {
-            if (email.contains(freeDomain)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
 
