@@ -1,27 +1,21 @@
 package exercise;
 
-import java.util.StringJoiner;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 // BEGIN
 class App {
-    private static final String TARGET_VARIABLE = "X_FORWARDED_";
-
     public static String getForwardedVariables(String cfg) {
-        String[] arr = cfg.split("\n");
-        StringJoiner result = new StringJoiner(",");
-        for (String item: arr) {
-            if (item.startsWith("environment")) {
-                var str = item.replaceAll("environment=\"", "");
-                var str1 = str.split(",");
-                for (String word: str1) {
-                    if (word.startsWith("X_FORWARDED_")) {
-                        var res = word.replaceAll("X_FORWARDED_", "");
-                        result.add(res.replaceAll("\"", ""));
-                    }
-                }
-            }
-        }
-        return result.toString();
+        String[] rows = cfg.split("\n");
+        return Arrays.stream(rows)
+                .filter(row -> row.startsWith("environment="))
+                .map(row -> row.replaceAll("environment=", ""))
+                .map(row -> row.replaceAll("\"", ""))
+                .map(row -> row.split(","))
+                .flatMap(Arrays::stream)
+                .filter(acc -> acc.startsWith("X_FORWARDED_"))
+                .map(acc -> acc.replaceAll("X_FORWARDED_", ""))
+                .collect(Collectors.joining(","));
     }
 }
 //END
