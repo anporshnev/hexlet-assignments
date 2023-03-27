@@ -8,13 +8,6 @@ import java.util.List;
 
 
 class AppTest {
-    private static CharSequence str;
-
-    @BeforeAll
-    static void initString() {
-        str = new ReversedSequence("abcdef");
-    }
-
     @Test
     void testBuildApartmentsList1() {
         List<Home> apartments = new ArrayList<>(List.of(
@@ -66,21 +59,10 @@ class AppTest {
     // BEGIN
     @Test
     void testReversedSequence() {
+        CharSequence str = new ReversedSequence("abcdef");
         assertThat("fedcba").isEqualTo(str.toString());
-    }
-
-    @Test
-    void testCharAt() {
         assertThat('e').isEqualTo(str.charAt(1));
-    }
-
-    @Test
-    void testLength() {
         assertThat((6)).isEqualTo(str.length());
-    }
-
-    @Test
-    void testSubSequence() {
         assertThat("edc").isEqualTo(str.subSequence(1, 4));
     }
     // END

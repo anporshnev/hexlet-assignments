@@ -11,9 +11,9 @@ public class App {
             return new ArrayList<>();
         }
         return apartments.stream()
+                .sorted(Home::compareTo)
                 .limit(count)
-                .sorted((a1, a2) -> a1.compareTo(a2))
-                .map(i -> i.toString())
+                .map(Home::toString)
                 .collect(Collectors.toList());
     }
 }
