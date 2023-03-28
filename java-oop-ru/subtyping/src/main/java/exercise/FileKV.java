@@ -8,9 +8,7 @@ public class FileKV implements KeyValueStorage {
 
     public FileKV(String path, Map<String, String> storage) {
         this.path = path;
-        storage.forEach((k, v) -> {
-            set(k, v);
-        });
+        storage.forEach((k, v) -> set(k, v));
     }
 
     @Override

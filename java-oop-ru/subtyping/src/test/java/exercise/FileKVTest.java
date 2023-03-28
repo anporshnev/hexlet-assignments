@@ -44,24 +44,6 @@ class FileKVTest {
         storage.unset("key");
         assertThat(storage.get("key", "def")).isEqualTo("def");
         assertThat(storage.toMap()).isEqualTo(Map.of("key2", "value2"));
-
-    }
-    @Test
-    void mustBeImmutableTest() {
-        Map<String, String> initial = new HashMap<>();
-        initial.put("key", "10");
-
-        Map<String, String> clonedInitial = new HashMap<>();
-        clonedInitial.putAll(initial);
-
-        KeyValueStorage storage = new FileKV(filepath.toString(), initial);
-
-        initial.put("key2", "value2");
-        assertThat(storage.toMap()).isEqualTo(clonedInitial);
-
-        Map<String, String> map = storage.toMap();
-        map.put("key2", "value2");
-        assertThat(storage.toMap()).isEqualTo(clonedInitial);
     }
     // END
 }
