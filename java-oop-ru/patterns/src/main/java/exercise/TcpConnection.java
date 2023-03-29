@@ -2,9 +2,6 @@ package exercise;
 import exercise.connections.Connection;
 import exercise.connections.Disconnected;
 
-import java.util.List;
-import java.util.ArrayList;
-
 // BEGIN
 public class TcpConnection {
     private Connection state = new Disconnected();
