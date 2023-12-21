@@ -6,7 +6,9 @@
 page = page,
 content = @`
 	<div>
-		<p class="mb-3"><a href="${NamedRoutes.buildPostPath()}">Добавить</a> </p>
+		<div class="mb-3">
+			<a href="${NamedRoutes.buildPostPath()}">Создать новый пост</a>
+		</div>
 		@for(var post : page.getPosts())
 			<div class="card mb-2" style="width: 18rem;">
 				<div class="card-body">
