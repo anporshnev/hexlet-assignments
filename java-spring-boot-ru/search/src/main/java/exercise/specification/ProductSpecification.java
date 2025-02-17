@@ -44,7 +44,7 @@ public class ProductSpecification {
         return (root, query, cb) ->
                 productTitle == null
                         ? cb.conjunction()
-                        : cb.equal(cb.lower(root.get("title")), productTitle.toLowerCase());
+                        : cb.like(cb.lower(root.get("title")), "%" + productTitle.toLowerCase() + "%");
     }
 }
 // END
